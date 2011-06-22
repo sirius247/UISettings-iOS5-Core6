@@ -1,0 +1,9 @@
+Package: com.qwertyoruiop.uisettingsios5
+Name: UISettingsNotificationBar
+Depends: firmware (>= 5.0)
+Version: 0.0.1
+Architecture: iphoneos-arm
+Description: An awesome widget for the notification center!
+Maintainer: qwerty or uiop?
+Author: qwerty or uiop?
+Section: Widgets

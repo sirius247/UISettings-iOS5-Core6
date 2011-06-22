@@ -1,0 +1,146 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXFileReference section */
+		EAB04DA113B14E000013E9EB /* BBWeeAppController-Protocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BBWeeAppController-Protocol.h"; sourceTree = "<group>"; };
+		EAB04DA213B14E000013E9EB /* control */ = {isa = PBXFileReference; lastKnownFileType = text; path = control; sourceTree = "<group>"; };
+		EAB04DA313B14E000013E9EB /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		EAB04DA413B14E000013E9EB /* Resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Resources; sourceTree = "<group>"; };
+		EAB04DA513B14E000013E9EB /* theos */ = {isa = PBXFileReference; lastKnownFileType = folder; path = theos; sourceTree = "<group>"; };
+		EAB04DA613B14E000013E9EB /* UISettingsNotificationBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UISettingsNotificationBarController.m; sourceTree = "<group>"; };
+		EAB04DB213B14F860013E9EB /* substrate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = substrate.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		EAB04D9913B14E000013E9EB = {
+			isa = PBXGroup;
+			children = (
+				EAB04DA113B14E000013E9EB /* BBWeeAppController-Protocol.h */,
+				EAB04DA213B14E000013E9EB /* control */,
+				EAB04DB213B14F860013E9EB /* substrate.h */,
+				EAB04DA313B14E000013E9EB /* Makefile */,
+				EAB04DA413B14E000013E9EB /* Resources */,
+				EAB04DA513B14E000013E9EB /* theos */,
+				EAB04DA613B14E000013E9EB /* UISettingsNotificationBarController.m */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		EAB04DA013B14E000013E9EB /* uisettingsnotificationbar */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "$(ACTION)";
+			buildConfigurationList = EAB04DA713B14E000013E9EB /* Build configuration list for PBXLegacyTarget "uisettingsnotificationbar" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = /Users/qwertyoruiop/Desktop/uisettingsios5/uisettingsnotificationbar;
+			dependencies = (
+			);
+			name = uisettingsnotificationbar;
+			passBuildSettingsInEnvironment = 1;
+			productName = uisettingsnotificationbar;
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXProject section */
+		EAB04D9B13B14E000013E9EB /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = EAB04D9E13B14E000013E9EB /* Build configuration list for PBXProject "uisettingsnotificationbar" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = EAB04D9913B14E000013E9EB;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EAB04DA013B14E000013E9EB /* uisettingsnotificationbar */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		EAB04D9C13B14E000013E9EB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx10.6;
+			};
+			name = Debug;
+		};
+		EAB04D9D13B14E000013E9EB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				SDKROOT = macosx10.6;
+			};
+			name = Release;
+		};
+		EAB04DA813B14E000013E9EB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = uisettingsnotificationbar;
+			};
+			name = Debug;
+		};
+		EAB04DA913B14E000013E9EB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = uisettingsnotificationbar;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EAB04D9E13B14E000013E9EB /* Build configuration list for PBXProject "uisettingsnotificationbar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EAB04D9C13B14E000013E9EB /* Debug */,
+				EAB04D9D13B14E000013E9EB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EAB04DA713B14E000013E9EB /* Build configuration list for PBXLegacyTarget "uisettingsnotificationbar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EAB04DA813B14E000013E9EB /* Debug */,
+				EAB04DA913B14E000013E9EB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EAB04D9B13B14E000013E9EB /* Project object */;
+}

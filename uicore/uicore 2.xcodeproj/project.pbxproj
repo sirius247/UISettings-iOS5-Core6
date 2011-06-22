@@ -1,0 +1,155 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXFileReference section */
+		EAA2CC5013B1543900CE3236 /* control */ = {isa = PBXFileReference; lastKnownFileType = text; path = control; sourceTree = "<group>"; };
+		EAA2CC5113B1543900CE3236 /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		EAA2CC5213B1543900CE3236 /* theos */ = {isa = PBXFileReference; lastKnownFileType = folder; path = theos; sourceTree = "<group>"; };
+		EAA2CC5313B1543900CE3236 /* uicore.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = uicore.mm; sourceTree = "<group>"; };
+		EAA2CC5413B1543900CE3236 /* uicore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = uicore.xcodeproj; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		EAA2CC4813B1543900CE3236 = {
+			isa = PBXGroup;
+			children = (
+				EAA2CC5013B1543900CE3236 /* control */,
+				EAA2CC5113B1543900CE3236 /* Makefile */,
+				EAA2CC5213B1543900CE3236 /* theos */,
+				EAA2CC5313B1543900CE3236 /* uicore.mm */,
+				EAA2CC5413B1543900CE3236 /* uicore.xcodeproj */,
+			);
+			sourceTree = "<group>";
+		};
+		EAA2CC5513B1543900CE3236 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		EAA2CC4F13B1543900CE3236 /* uicore */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "$(ACTION)";
+			buildConfigurationList = EAA2CC5813B1543900CE3236 /* Build configuration list for PBXLegacyTarget "uicore" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = /Users/qwertyoruiop/Desktop/uisettingsios5/uicore;
+			dependencies = (
+			);
+			name = uicore;
+			passBuildSettingsInEnvironment = 1;
+			productName = uicore;
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXProject section */
+		EAA2CC4A13B1543900CE3236 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = EAA2CC4D13B1543900CE3236 /* Build configuration list for PBXProject "uicore 2" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = EAA2CC4813B1543900CE3236;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = EAA2CC5513B1543900CE3236 /* Products */;
+					ProjectRef = EAA2CC5413B1543900CE3236 /* uicore.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				EAA2CC4F13B1543900CE3236 /* uicore */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		EAA2CC4B13B1543900CE3236 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx10.6;
+			};
+			name = Debug;
+		};
+		EAA2CC4C13B1543900CE3236 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				SDKROOT = macosx10.6;
+			};
+			name = Release;
+		};
+		EAA2CC5913B1543900CE3236 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = uicore;
+			};
+			name = Debug;
+		};
+		EAA2CC5A13B1543900CE3236 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = uicore;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EAA2CC4D13B1543900CE3236 /* Build configuration list for PBXProject "uicore 2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EAA2CC4B13B1543900CE3236 /* Debug */,
+				EAA2CC4C13B1543900CE3236 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EAA2CC5813B1543900CE3236 /* Build configuration list for PBXLegacyTarget "uicore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EAA2CC5913B1543900CE3236 /* Debug */,
+				EAA2CC5A13B1543900CE3236 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EAA2CC4A13B1543900CE3236 /* Project object */;
+}
