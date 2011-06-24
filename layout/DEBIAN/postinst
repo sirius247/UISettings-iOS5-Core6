@@ -4,9 +4,5 @@ echo stopping uisettingsdaemon
 /bin/launchctl unload  /System/Library/LaunchDaemons/com.qwertyoruiop.uisettingsd.plist || :
 echo starting eet
 /bin/launchctl load  /System/Library/LaunchDaemons/com.qwertyoruiop.uisettingsd.plist
-echo creating tha folder
-( mkdir /var/mobile/Documents || : ) &>/dev/null
-echo 'ch(own/mod)[d]ing'
-chown mobile:staff /var/mobile/Documents
-chmod 777 /var/mobile/Documents
+echo "=====    enjoy   ======"
 :

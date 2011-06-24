@@ -17,6 +17,7 @@ float VIEW_HEIGHT = 87.0f;
 -(void)load_lib;
 +(USCore*)sharedCore;
 -(CGSize)iconSize;
+-(void)refreshOrientation;
 -(void)viewWillShow;
 -(UIImage*)imageWithName:(NSString*)name;
 @end
@@ -87,6 +88,8 @@ static UIView *_view=nil;
 		for(UIView* v__ in [[self view] subviews]){
             CGRect rect=v__.frame;
             rect.size.width=476;
+            if([v__ isKindOfClass:objc_getClass("USScrollView")])
+                rect.size.width=475;
             v__.frame=rect;
 		}
 	} else {
@@ -96,9 +99,12 @@ static UIView *_view=nil;
 		for(UIView* v__ in [[self view] subviews]){
             CGRect rect=v__.frame;
             rect.size.width=316;
+            if([v__ isKindOfClass:objc_getClass("USScrollView")])
+            rect.size.width=315;
             v__.frame=rect;
 		}
 	}
+    [[objc_getClass("USCore") sharedCore] refreshOrientation];
 	[self checkViews:[UIApplication sharedApplication].windows];
 }
 - (void)checkViews:(NSArray *)subviews {

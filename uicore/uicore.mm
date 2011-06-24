@@ -1,6 +1,8 @@
 #import <objc/runtime.h>
 #import <Foundation/Foundation.h>
 #import <unistd.h>
+#import "substrate.h"
+#import "uicore.h"
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <fcntl.h>
@@ -46,7 +48,9 @@
 @property(readwrite, assign) UIView* contentView;
 @property(readonly) USScrollView* settingsView;
 -(void)load_lib;
+-(void)refreshOrientation;
 +(USCore*)sharedCore;
+-(CGRect)rectForToggleAtIndex:(int)index;
 -(CGSize)iconSize;
 -(USToggle*)addToggle:(USToggle*)toggle;
 -(void)viewWillShow;
@@ -218,31 +222,6 @@ static UISettingsToggleController* sharedIInstance = nil;
 
 @end
 @implementation USScrollView
-
--(void)addSubview:(UIView*)subview
-{
-    /*
-     * Automatic content size adjustment
-     */
-    
-    CGSize currentSize=[self contentSize];
-    [super addSubview:subview];
-    CGFloat scrollViewWidth = 0.0f;
-    for (UIView* view in self.subviews)
-    {
-        if (!view.hidden)
-        {
-            CGFloat x = view.frame.origin.x;
-            CGFloat w = view.frame.size.width;
-            if (w + x > scrollViewWidth)
-            {
-                scrollViewWidth = w + x;
-            }
-        }
-    }
-    [self setContentSize:(CGSizeMake(scrollViewWidth+10, currentSize.height))];
-}
-
 @end
 NSNumber* kNumNo=[NSNumber numberWithBool:NO];
 NSNumber* kNumMinusOne=[NSNumber numberWithInt:-1];
@@ -278,7 +257,7 @@ static USCore* sCore;
 -(NSDictionary*)toggleSettingsForToggle:(USToggle*)toggle
 {
     BOOL didUpdatePlist=NO;
-    NSString* path_=[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingString:@"/UISettings.plist"];
+    NSString* path_=@"/var/mobile/Library/Preferences/com.qwertyoruiop.UISettings.plist";
     if (!toggleSettings) {
         toggleSettings=[[NSMutableArray arrayWithContentsOfFile:path_] retain];
         if(!toggleSettings) toggleSettings=[NSMutableArray new];
@@ -322,6 +301,48 @@ static USCore* sCore;
     }
     return nil;
 }
+-(CGRect)rectForToggleAtIndex:(int)index
+{
+    //[MSHookIvar<id>([objc_getClass("SBAppSwitcherController") sharedInstance], "_bottomBar") _iconFrameForIndex:index withSize:[self iconSize]];
+    int orient=[[UIApplication sharedApplication] _frontMostAppOrientation];
+    int togglesPerPage=4;
+    CGFloat pageSize=316;
+    if (orient==3||orient==4) {
+        pageSize=476;
+        togglesPerPage=6;
+    }
+
+    int page=0;
+    while (index>=togglesPerPage) {
+        index-=togglesPerPage;
+        page++;
+    }
+    index++;
+    CGFloat x=0;
+    switch (index) {
+        case 1:
+            x=14;
+            break;
+        case 2:
+            x=90;
+            break;
+        case 3:
+            x=167;
+            break;
+        case 4:
+            x=243;
+            break;
+        case 5:
+            x=320;
+            break;
+        case 6:
+            x=397;
+            break;
+    }
+    NSLog(@"INDEX IS %d - PAGE %d", index, page);
+    return CGRectMake(x+(page*pageSize),0,[self iconSize].width, [self iconSize].height);
+    
+}
 -(void)viewWillShow
 {
     if(!didLoad){
@@ -333,26 +354,62 @@ static USCore* sCore;
             if(!toggle_) continue;
             [toggle_ loadToggle];
             [toggle_ refresh];
-            CGRect frameForToggle=CGRectMake(((10+[self iconSize].width)*p)+10, 0, [self iconSize].width, [self iconSize].height);
-            [toggle_ button].frame=frameForToggle;
-            CGPoint cer=((UIButton*)toggle_.button).center;
-            cer.y+=(((UIButton*)toggle_.button).frame.size.height/2)+6;
             NSString* text_display=[toggle_ title];
             if ([toggleLocalSettings objectForKey:@"fakeTitle"]&&(![[toggleLocalSettings objectForKey:@"fakeTitle"] isEqualToString:@""])) {
                 text_display=[toggleLocalSettings objectForKey:@"fakeTitle"];
             }
             [toggle_ label].text = text_display;
-            [toggle_ label].center=cer;
+            /*
+             slows things down epically
+            [toggle_ button].layer.shadowColor = [[UIColor blackColor] CGColor];
+            [toggle_ button].layer.shadowOffset = CGSizeMake(0.0, 0.5);
+            [toggle_ button].layer.shadowOpacity = 0.8;
+            [toggle_ button].layer.shadowRadius = 0.5;
+            [toggle_ button].layer.masksToBounds=NO;
+            [toggle_ label].layer.shadowOpacity = 0.7; 
+            [toggle_ label].layer.shadowRadius = 0.5;
+            [toggle_ label].layer.shadowColor = [UIColor blackColor].CGColor; 
+            [toggle_ label].layer.shadowOffset = CGSizeMake(0.0, 1.0); 
+            [toggle_ label].layer.masksToBounds=NO;
+             */
             [settingsView addSubview:[toggle_ button]];
             [settingsView addSubview:[toggle_ label]];
             [toggle_ refresh];
             p++;
+            [self refreshOrientation];
         }
         didLoad=YES;
-        [toggleQueue dealloc];
-        toggleQueue=nil;
     }
-    
+}
+-(void)refreshOrientation
+{
+    int p=0;
+    for (NSDictionary* toggleLocalSettings in toggleSettings) {
+        USToggle* toggle_=[self toggleForTitle:[toggleLocalSettings objectForKey:@"identifier"]];
+        if(!toggle_) continue;
+        CGRect frameForToggle=[self rectForToggleAtIndex:p];
+        [toggle_ button].frame=frameForToggle;
+        CGPoint cer=((UIButton*)toggle_.button).center;
+        cer.y+=(((UIButton*)toggle_.button).frame.size.height/2)+6;
+        [toggle_ label].center=cer;
+        p++;
+    }
+    int orient=[[UIApplication sharedApplication] _frontMostAppOrientation];
+    CGFloat pageSize=316;
+    int togglesPerPage=4;
+    if (orient==3||orient==4) {
+        pageSize=476;
+        togglesPerPage=6;
+    }
+
+    int page=0;
+    while (p>=togglesPerPage) {
+        if(p>togglesPerPage) page++;
+        p-=togglesPerPage;
+    }
+    page++;
+    [settingsView setContentSize:CGSizeMake(page*pageSize, settingsView.frame.size.height)];
+    [settingsView setContentOffset:CGPointMake(0, 0) animated:NO];
 }
 -(CGSize)iconSize
 {
@@ -366,9 +423,11 @@ static USCore* sCore;
         NSLog(@"[UISettings]: contentView is nil. Bailing out.");
         return;
     }
-    toggleQueue=[[[[[NSMutableArray alloc] init] retain] retain] retain]; // do not release-release-release 'til I say so!
+    toggleQueue=[[[[[NSMutableArray alloc] init] retain] retain] retain]; // never dealloc dis.
     settingsView=[[USScrollView alloc] initWithFrame:CGRectMake(0, 6, 316, 85)];
     settingsView.bounces = YES;
+    settingsView.pagingEnabled = YES;
+    [settingsView setShowsHorizontalScrollIndicator:NO];
     [contentView addSubview:settingsView];
     NSFileManager* fm = [[NSFileManager alloc] init];
     NSEnumerator *e = [[fm contentsOfDirectoryAtPath:@"/Library/UISettings/" error:nil] objectEnumerator];
